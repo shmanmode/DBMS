@@ -1,0 +1,64 @@
+SELECT * FROM employee;
+select * from department;
+
+update employee set dept_id = 3 where emp_id=6;
+
+insert into employee values(10,'anki',3,80000,4),(11,'ankush',2,85000,3
+
+select salary from employee where emp_name='abhi';   
+
+select emp_name ,salary,dept_id from employee where salary>(select salary from employee where emp_name = 'abhi');
+
+select count(*),emp_name from employee where salary>80000;
+
+select emp_name from employee where salary=(select salary from employee where emp_name = 'scott');
+
+select manager from employee where emp_name=(select emp_name from employee where emp_name = 'scott');
+
+select emp_name from employee where salary>(select avg(salary) from employee);
+
+select emp_name,salary from empl oyee order by salary desc;
+
+
+
+update employee set salary=100000 where emp_name = 'teki';
+ 
+select emp_name from employee where emp_id=(select manager from employee where emp_name = 'scott');
+
+select emp_name from employee where emp_id=(select manager from employee where emp_id =(select manager from employee where emp_name = 'scott')); 
+
+select dept_name from department where dept_id=(select dept_id from employee where emp_name ='abhi');
+
+select e.emp_id,e.emp_name , d.dept_name from employee e join department d on e.dept_id= d.dept_id where e.emp_name ='abhi';
+
+select count(*) from employee where manager=(select emp_id from employee where emp_name = 'max'); 
+
+select emp_name,count(*)  from employee where dept_id=(select dept_id from department where dept_name='marketing') and  salary>9000 group by salary; 
+
+select emp_name from employee where salary=(select max(salary) from employee where dept_id=3);
+ 
+select emp_name from employee where salary=(select max(salary)from employee where emp_id=manager);
+ 
+select d.dept_name,e.emp_name, e.emp_id,e.salary from employee e join department d on e.dept_id=d.dept_id and d.dept_name ='marketing';
+
+select max(salary)from employee where salary<(select max(salary) from employee);
+
+select sum(salary) from employee where dept_id=(select dept_id from department where dept_name='marketing');
+
+ select d.dept_name,count(e.emp_name) from department d join employee e  on e.dept_id= d.dept_id group by dept_name;
+ 
+ select emp_name,salary from employee e join department d on e.dept_id=d.dept_id where salary>(select avg(salary) from employee where d.dept_name='marketing');
+  
+select emp_id,emp_name from employee where emp_id in(select manager from employee);   
+
+select max(salary) from employee where salary<(select max(salary) from employee where salary <(select max(salary) from employee));
+
+update employee set dept_id = null where emp_name = 'teki';
+
+ select emp_name from employee e join department d where exists(select 'saa' from employee where dept_id=d.dept_id AND e.dept_id IS null)limit 1;
+
+select emp_id, emp_name from employee where dept_id in(2,3);
+
+select emp_id, emp_name from employee where dept_id in ( select dept_id from department where dept_name ='marketing' or dept_name='finance');
+
+select emp_name from employee where dept_id not in(1,2,3);

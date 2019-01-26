@@ -1,0 +1,23 @@
+use shubham;
+
+db.createCollection("Employee");
+
+db.Employee.insert([{"name":"shubham","salary":80000,"deptid":1923,"deptname":"electronics"},
+{"name":"abhishek","salary":8000,"deptid":1978,"deptname":"electr"}]);
+
+db.Employee.find();
+
+db.Employee.find().pretty();
+
+db.Employee.find({"name":"abhishek"});
+
+db.Employee.update({"name":"abhishek"},{$set:{"salary":50000}});
+
+db.Employee.remove({"name":"abhishek"})
+
+
+
+
+for finding max and min
+db.employee.find().sort({age:-1}).limit(1) // for MAX
+db.employee.find().sort({age:+1}).limit(1) // for MIN
